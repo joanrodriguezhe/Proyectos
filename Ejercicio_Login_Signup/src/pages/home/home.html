@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Eventos
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="!data.myToggle">
+        <p>LogIn</p>
+        <form [formGroup]="myFormLogIn" (ngSubmit)="sendDataLogIn()">
+          <ion-item>
+            <ion-label floating>Username or Email</ion-label>
+            <ion-input formControlName="liUsername"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input placeholder="Password" type="password" formControlName="liPassword"></ion-input>
+          </ion-item>
+        </form>
+
+    <button ion-button full (click)="openPrincipal()" type="submit" [disabled]="!myFormLogIn.valid">LogIn</button>
+  </div>
+
+  <div *ngIf="data.myToggle">
+        <p>SignUp</p>
+        
+        <form [formGroup]="myFormSignUp" (ngSubmit)="sendDataSignUp()">
+          <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input formControlName="suUsername"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" formControlName="suEmail"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="suPassword1"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Confirm password</ion-label>
+            <ion-input type="password" formControlName="suPassword2"></ion-input>
+          </ion-item>
+        </form>
+      
+    <button ion-button full col-12 (click)="openPrincipal()" type="submit" [disabled]="!myFormSignUp.valid">SignUp</button>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-toggle [(ngModel)]="data.myToggle" (click)="toggleChange(data.myToggle)">
+          
+        </ion-toggle>
+        <ion-label>{{data.option}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+
+</ion-content>
